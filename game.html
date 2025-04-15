@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flip a Coin Game</title>
+    <style>
+        /* CSS Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #coinResult {
+            margin-top: 20px;
+        }
+
+        #coin {
+            width: 150px;
+            height: 150px;
+            margin-top: 20px;
+            transition: transform 0.5s;
+        }
+
+        #result {
+            font-size: 1.5rem;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Flip a Coin</h1>
+        <button id="flipButton">Flip Coin</button>
+        <p id="result"></p>
+        <div id="coinResult">
+            <img id="coin" src="assets/img/heads.jpg" alt="Coin Image">
+        </div>
+    </div>
+
+    <script>
+        // JavaScript code to handle the coin flipping logic
+        document.getElementById("flipButton").addEventListener("click", function() {
+            let coinFlip = Math.random() < 0.5 ? "heads" : "tails";
+            let resultText = coinFlip === "heads" ? "Heads!" : "Tails!";
+
+            // Update the result text
+            document.getElementById("result").textContent = resultText;
+
+            // Change the image based on the coin flip
+            const coinImage = document.getElementById("coin");
+            coinImage.style.transform = "rotateY(180deg)"; // Simulate the coin flip
+
+            // Wait for the coin flip animation to complete, then update the image
+            setTimeout(function() {
+                coinImage.src = coinFlip === "heads" ? "assets/img/heads.jpg" : "assets/img/tails.jpg";
+                coinImage.style.transform = "rotateY(0deg)";
+            }, 500); // The timeout matches the animation duration
+        });
+    </script>
+
+</body>
+</html>
